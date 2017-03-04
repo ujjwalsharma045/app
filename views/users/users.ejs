@@ -1,0 +1,149 @@
+<% include ../layouts/header %>
+<div>
+<% if(usersession.flashmessage){ %> <%= usersession.flashmessage %> <% } %>
+</div>
+<style type="text/css">
+.even{
+ background-color:#CCCCCC;;
+}
+.odd{
+ background-color:#f0f0f2;
+}
+</style>
+<div class="marginleft20 topmargin10  table table-bordered table-hover placed-orders content_main" id="order-reseller-grid">
+<form action="" method="GET">
+   <div>      
+      <input type="text" name="email" id="email" value="" placeholder="Email"/>
+	  <input type="text" name="first_name" id="first_name" value="" placeholder="First Name"/>
+	  <input type="text" name="last_name" id="last_name" value="" placeholder="Last Name"/>
+      <input type="submit" value="Search" />
+   </div>
+</form>
+<table border="1" width="100%" style="border-collapse:collapse;background-color:#6d6e72" class="items table">
+		  <% 
+		  if(users.length>0){ 
+				%>
+				<tr style="background-color:#CCCCCC">
+				   <th>Email</th>
+				   <th>Username</th>
+				   <th>Name</th>
+				   <th>Gender</th>
+				   <th>Registered date</th>
+				   <th>Actions</th>
+				</tr>
+				<%
+				
+				for(var i=0; i<users.length; i++){ 
+				    
+					%>
+					<tr class="<% if((i+1)%2 ==0){ 
+					%><%= "even"  %><%} else { %><%= "odd"  %><%} 
+					%>">
+						<td>
+						  <%= users[i]['email'] %>
+						</td>						
+						
+						<td>
+						  <%= users[i]['username'] %>
+						</td>						
+						
+						<td>
+						   <%= users[i]['first_name']+" "+users[i]['last_name'] %>
+						</td>						
+						
+						<td>
+						   <%= users[i]['gender'] %>
+						</td>
+						
+						<td>
+						   <%= users[i]['created'] %>
+						</td>
+						
+						<td>
+							<a href="../edit/<%= users[i]['_id']  %>" target='_blank'>
+								Edit							   
+							</a>
+							<a href="../view/<%= users[i]['_id']  %>">
+								View
+							</a>
+							<a href="../delete/<%= users[i]['_id']  %>">
+								Delete
+							</a>
+						</td>							
+				     </tr>				
+				     <% 
+			} 					
+		}
+		else {
+			%>
+			<tr>
+				<td colspan="6" style="text-align:center">
+				 No user found
+				</td>
+			</tr>
+			<%
+		}
+		%>
+		</table>
+		<%
+		 if(users.length>0){ 
+				%>
+		              <ul style="list-style:none" class="pagination">				
+						<% 						
+						if(pages>1 && currentpage>1){
+						   %>
+						   <li style="list-style:none;float:left;padding:5px 5px 5px 5px">
+							 <a href="showusers?page=<%= 1; %>&limit=<%= pagelimit %>">
+							   <%= "First" %>
+							 </a>
+						   <li>
+						   <%
+						}
+						
+						if(currentpage>1){
+						   %>
+						   <li style="list-style:none;float:left;padding:5px 5px 5px 5px">
+							 <a href="showusers?page=<%= currentpage-1; %>&limit=<%= pagelimit %>">
+							   <%= "Prev" %>
+							 </a>
+						   <li>
+						   <%
+						}
+						
+						for(i=1; i<=pages; i++){
+						   %>
+						   <li style="list-style:none;float:left;padding:5px 5px 5px 5px" class="<% if(currentpage==i){ %><%= "active" %><% } else { %><%= "no" %><% } %>">
+							 <a href="showusers?page=<%= i; %>&limit=<%= pagelimit %>">
+							   <%= i %>
+							 </a>
+						   <li>
+						   <%
+						}
+						
+						if(currentpage<pages){
+						   %>
+						   <li style="list-style:none;float:left;padding:5px 5px 5px 5px">
+							 <a href="showusers?page=<%= currentpage+1; %>&limit=<%= pagelimit %>">
+							   <%= "Next" %>
+							 </a>
+						   <li>
+						   <%
+						}
+						
+						if(pages>1 && currentpage<pages){
+						   %>
+						   <li style="list-style:none;float:left;padding:5px 5px 5px 5px">
+							 <a href="showusers?page=<%= pages; %>&limit=<%= pagelimit %>">
+							   <%= "Last" %>
+							 </a>
+						   <li>
+						   <%
+						}
+						%>
+					</ul>
+                    <%
+		}
+		%>				  
+
+</div>
+<% include ../layouts/footer %>			

@@ -1,0 +1,85 @@
+<% include ../layouts/header %>
+<form action="../edit/<%= id; %>" method="post">
+       <%
+	   if(errors.length>0){
+		   %>
+		   <ul>
+		     <%
+			 for(var i=0; i<errors.length; i++){
+			     %>
+			     <li style="color:red">
+				    <%= errors[i] %>   
+				 </li>
+			     <%
+			 }
+			 %>
+		   </ul>
+		   <%
+	   }
+	   %>  
+	   <div> 
+		   <label>First Name</label>
+		   <span>
+			  <input type="text" name="first_name" value="<% if(typeof users[0]['first_name']!="undefined"){ %> <%= users[0]['first_name'];  %> <% } %>"/>
+		   </span>
+	   </div>
+	   
+	   <div>
+		 <label>Last Name</label>
+		 <span>
+		   <input type="text" name="last_name" value="<% if(typeof users[0]['last_name']!="undefined"){ %> <%= users[0]['last_name'];  %> <% } %>"/>
+		 </span>
+	   </div>
+	   
+	   <div>
+		   <label>Email</label>
+		   <span>
+			  <input type="text" name="email" value="<% if(typeof users[0]['email']!="undefined"){ %> <%= users[0]['email'];  %> <% } %>"/>
+		   </span>
+	   </div>
+	   
+	   <div>
+		   <label>Username</label>
+		   <span>
+			  <input type="text" name="username" value="<% if(typeof users[0]['username']!="undefined"){ %> <%= users[0]['username'];  %> <% } %>"/>
+		   </span>
+	   </div>
+	   
+	   <div>
+		   <label>Password</label>
+		   <span>
+			  <input type="password" name="password" value=""/>
+		   </span>
+	   </div>
+	   
+	   <div>
+		 <label>Address</label>
+		 <span>
+		   <input type="text" name="address" value="<% if(typeof users[0]['address']!="undefined"){ %> <%= users[0]['address'];  %> <% } %>"/>
+		 </span>
+	   </div>	 
+
+	   <div>
+		   <label>City</label>
+		   <span>
+			  <input type="text" name="city" value="<% if(typeof users[0]['city']!="undefined"){ %> <%= users[0]['city'];  %> <% } %>"/>
+		   </span>
+	  </div>
+	  
+	  <div>
+		 <label>State</label>
+		 <span>
+		   <input type="text" name="state" value="<% if(typeof users[0]['state']!="undefined"){ %> <%= users[0]['state'];  %> <% } %>"/>
+		 </span>
+	  </div>
+	   
+	  <div> 
+		 <label>Zipcode</label>
+		 <span>
+		   <input type="text" name="zip_code" value="<% if(typeof users[0]['zipcode']!="undefined"){ %> <%= users[0]['zipcode'];  %> <% } %>"/>
+		 </span> 
+	  </div>
+	  
+	  <input type="submit" value="Submit"/>
+</form>
+<% include ../layouts/footer %>

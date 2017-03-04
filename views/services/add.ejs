@@ -1,0 +1,57 @@
+<% include ../layouts/header %>
+<form action="../services/add" method="post">
+       <%
+	   if(errors.length>0){
+		   %>
+		   <ul>
+		     <%
+			 for(var i=0; i<errors.length; i++){
+			     %>
+			     <li style="color:red">
+				    <%= errors[i] %>   
+				 </li>
+			     <%
+			 }
+			 %>
+		   </ul>
+		   <%
+	   }
+	   %>  
+	   <div> 
+		   <label>Title</label>
+		   <span>
+			  <input type="text" name="title" value="<% if(typeof service.title!="undefined"){ %> <%= service.title;  %> <% } %>"/>
+		   </span>
+	   </div>
+	   
+	   <div>
+		 <label>Description</label>
+		 <span>
+		   <input type="text" name="description" value="<% if(typeof service.description!="undefined"){ %> <%= service.description;  %> <% } %>"/>
+		 </span>
+	   </div>
+	   
+	   <div>
+		   <label>Price</label>
+		   <span>
+			  <input type="text" name="price" value="<% if(typeof service.price!="undefined"){ %> <%= service.price;  %> <% } %>"/>
+		   </span>
+	   </div>
+	   
+	   <div>
+		   <label>Cost</label>
+		   <span>
+			  <input type="text" name="cost" value="<% if(typeof service.cost!="undefined"){ %> <%= service.cost;  %> <% } %>"/>
+		   </span>
+	   </div>
+	   	   
+	   <div>
+		 <label>Status</label>
+		 <span>
+		   <input type="text" name="status" value="<% if(typeof service.status!="undefined"){ %> <%= service.status;  %> <% } %>"/>
+		 </span>
+	   </div>	 
+	  
+	  <input type="submit" value="Submit"/>
+</form>
+<% include ../layouts/footer %>

@@ -1,0 +1,32 @@
+<% include ../layouts/header %>
+<table border="1" width="100%" style="border-collapse:collapse">
+		        <tr>
+				   <td>Title</td>
+				   <td>Description</td>
+				   <td>Price</td>
+                   <td>Cost</td>
+                   <td>Status</td>				   
+				</tr>
+				<tr>
+					<td>
+					  <%= service[0]['title'] %>
+					</td>						
+					
+					<td>
+					  <%= service[0]['description'] %>
+					</td>						
+					
+					<td>
+					   <%= service[0]['price'] %>
+					</td>
+
+                    <td>
+					   <%= service[0]['cost'] %>
+					</td>
+       
+                    <td>
+					   <%= service[0]['status'] %>
+					</td>	   
+				</tr>							 
+</table>			
+<% include ../layouts/footer %>

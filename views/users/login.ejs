@@ -1,0 +1,43 @@
+<% include ../layouts/header %>
+<form action="login" method="post" class="form-horizontal topmargin55">
+       <%
+	   if(errors.length>0){
+		   %>
+		   <ul>
+		     <%
+			 for(var i=0; i<errors.length; i++){
+			     %>
+			     <li style="color:red">
+				    <%= errors[i] %>   
+				 </li>
+			     <%
+			 }
+			 %>
+		   </ul>
+		   <%
+	   }
+	   %>	   	   
+	   <div class="control-group">
+		   <div class="controls">
+			   <label>Username</label>
+			   <span>
+				  <input class="wt" type="text" name="username" value="<% if(typeof data.username!="undefined"){ %> <%= data.username;  %> <% } %>"/>
+			   </span>
+		   </div>
+	   </div>
+	   
+	   <div class="control-group">
+		  <div class="controls">
+			   <label>Password</label>
+			   <span>
+				  <input class="wt" type="password" name="password" value=""/>
+			   </span>
+		   </div>	   	  
+	   </div>
+	   <div class="control-group">
+		  <div class="controls">
+	   <input type="submit" value="Submit" class="btn btn-danger marginleft80 topmargin10 btn btn-primary"/>
+	    </div>	   	  
+	   </div>
+</form>
+<% include ../layouts/footer %>

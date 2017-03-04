@@ -1,0 +1,144 @@
+<% include ../layouts/header %>
+<% if(session.flashmessage){ %> <%= session.flashmessage %> <% } %>
+<style type="text/css">
+.even{
+ background-color:#CCCCCC;;
+}
+.odd{
+ background-color:#f0f0f2;
+}
+</style>
+<form action="" method="GET">
+   <div>      
+      <input type="text" name="title" id="title" value="" placeholder="Title"/>
+	  <input type="text" name="price" id="price" value="" placeholder="Price"/>
+	  <input type="text" name="cost" id="cost" value="" placeholder="Cost"/>
+      <input type="submit" value="Search" />
+   </div>
+</form>
+<div class="marginleft20 topmargin10  table table-bordered table-hover placed-orders content_main" id="order-reseller-grid">
+<table border="1" width="100%" style="border-collapse:collapse;background-color:#6d6e72" class="items table">
+		  <% 
+		  if(services!="undefined" && services.length>0){ 
+				%>
+				<tr>
+				   <td>Service</td>
+				   <td>Description</td>
+				   <td>Price</td>
+				   <td>Cost</td>
+				   <td>Status</td>
+				   <td>Actions</td>
+				</tr>
+				<%
+				for(var i=0; i<services.length; i++){ 
+					%>
+					<tr class="<% if((i+1)%2 ==0){ 
+					%><%= "even"  %><%} else { %><%= "odd"  %><%} 
+					%>">
+						<td>
+						  <%= services[i]['title'] %>
+						</td>						
+						
+						<td>
+						  <%= services[i]['description'] %>
+						</td>						
+						
+						<td>
+						   <%= services[i]['price'] %>
+						</td>						
+						
+						<td>
+						   <%= services[i]['cost'] %>
+						</td>
+						
+						<td>
+						   <%= services[i]['status'] %>
+						</td>
+						
+						<td>
+							<a href="../services/edit/<%= services[i]['_id']  %>" target='_blank'>
+								Edit							   
+							</a>
+							<a href="../services/view/<%= services[i]['_id']  %>">
+								View
+							</a>
+							<a href="../services/delete/<%= services[i]['_id']  %>">
+								Delete
+							</a>
+						</td>							
+				</tr>	
+				<% 
+			} 
+		}
+		else {
+			%>
+			<tr>
+				<td colspan="6" style="text-align:center">
+				 No user found
+				</td>
+			</tr>
+			<%
+		}
+		%>				  
+</table>
+<%
+ if(services.length>0){ 
+	  %>
+	  <ul style="list-style:none" class="pagination">				
+		<% 						
+		if(pages>1 && currentpage>1){
+		   %>
+		   <li style="list-style:none;float:left;padding:5px 5px 5px 5px">
+			 <a href="services?page=<%= 1; %>&limit=<%= pagelimit %>">
+			   <%= "First" %>
+			 </a>
+		   <li>
+		   <%
+		}
+		
+		if(currentpage>1){
+		   %>
+		   <li style="list-style:none;float:left;padding:5px 5px 5px 5px">
+			 <a href="services?page=<%= currentpage-1; %>&limit=<%= pagelimit %>">
+			   <%= "Prev" %>
+			 </a>
+		   <li>
+		   <%
+		}
+		
+		for(i=1; i<=pages; i++){
+		   %>
+		   <li style="list-style:none;float:left;padding:5px 5px 5px 5px" class="<% if(currentpage==i){ %><%= "active" %><% } else { %><%= "no" %><% } %>">
+			 <a href="services?page=<%= i; %>&limit=<%= pagelimit %>">
+			   <%= i %>
+			 </a>
+		   <li>
+		   <%
+		}
+		
+		if(currentpage<pages){
+		   %>
+		   <li style="list-style:none;float:left;padding:5px 5px 5px 5px">
+			 <a href="services?page=<%= currentpage+1; %>&limit=<%= pagelimit %>">
+			   <%= "Next" %>
+			 </a>
+		   <li>
+		   <%
+		}
+		
+		if(pages>1 && currentpage<pages){
+		   %>
+		   <li style="list-style:none;float:left;padding:5px 5px 5px 5px">
+			 <a href="services?page=<%= pages; %>&limit=<%= pagelimit %>">
+			   <%= "Last" %>
+			 </a>
+		   <li>
+		   <%
+		}
+		%>
+	</ul>
+	<%
+}
+%>
+</div>
+<% include ../layouts/footer %>			

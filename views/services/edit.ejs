@@ -1,0 +1,57 @@
+<% include ../layouts/header %>
+<form action="../edit/<%= id; %>" method="post">
+       <%
+	   if(errors.length>0){
+		   %>
+		   <ul>
+		     <%
+			 for(var i=0; i<errors.length; i++){
+			     %>
+			     <li style="color:red">
+				    <%= errors[i] %>   
+				 </li>
+			     <%
+			 }
+			 %>
+		   </ul>
+		   <%
+	   }
+	   %>  
+	   <div> 
+		   <label>Title</label>
+		   <span>
+			  <input type="text" name="title" value="<% if(typeof service[0]['title']!="undefined"){ %> <%= service[0]['title'];  %> <% } %>"/>
+		   </span>
+	   </div>
+	   
+	   <div>
+		 <label>Description</label>
+		 <span>
+		   <input type="text" name="description" value="<% if(typeof service[0]['description']!="undefined"){ %> <%= service[0]['description'];  %> <% } %>"/>
+		 </span>
+	   </div>
+	   
+	   <div>
+		   <label>Price</label>
+		   <span>
+			  <input type="text" name="price" value="<% if(typeof service[0]['price']!="undefined"){ %> <%= service[0]['price'];  %> <% } %>"/>
+		   </span>
+	   </div>
+	   
+	   <div>
+		   <label>Cost</label>
+		   <span>
+			  <input type="text" name="cost" value="<% if(typeof service[0]['cost']!="undefined"){ %> <%= service[0]['cost'];  %> <% } %>"/>
+		   </span>
+	   </div>
+	   	   
+	   <div>
+		 <label>Status</label>
+		 <span>
+		   <input type="text" name="status" value="<% if(typeof service[0]['status']!="undefined"){ %> <%= service[0]['status'];  %> <% } %>"/>
+		 </span>
+	   </div>	 
+	  
+	  <input type="submit" value="Submit"/>
+</form>
+<% include ../layouts/footer %>

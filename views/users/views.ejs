@@ -1,0 +1,22 @@
+<% include ../layouts/header %>
+<table border="1" width="100%" style="border-collapse:collapse">
+		        <tr>
+				   <td>Email</td>
+				   <td>Username</td>
+				   <td>Name</td>			
+				</tr>
+				<tr>
+					<td>
+					  <%= records[0]['email'] %>
+					</td>						
+					
+					<td>
+					  <%= records[0]['username'] %>
+					</td>						
+					
+					<td>
+					   <%= records[0]['first_name']+" "+records[0]['last_name'] %>
+					</td>						
+				</tr>							 
+</table>			
+<% include ../layouts/footer %>
